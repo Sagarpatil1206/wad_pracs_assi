@@ -29,7 +29,6 @@ export const updatedata = async(req,res) => {
   }
 }
 export const deletedata = async(req,res) => {
-   console.log("nn");
   const {roll_num} = req.body;
   try {
     const deleteStudent = await studentModel.deleteOne({roll_num:roll_num});

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Data List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1 class="mt-4">Data List</h1>
+    <table class="table table-striped table-bordered mt-4">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody id="user-list"></tbody>
+    </table>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Fetch user data from the server
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'http://localhost:3000/users');
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+          if (xhr.status === 200) {
+            var data = JSON.parse(xhr.responseText);
+            if (data && data.length > 0) {
+              var userListElement = document.getElementById('user-list');
+              data.forEach(function(user) {
+                var row = document.createElement('tr');
+                var nameCell = document.createElement('td');
+                var emailCell = document.createElement('td');
+                nameCell.textContent = user.name;
+                emailCell.textContent = user.email;
+                row.appendChild(nameCell);
+                row.appendChild(emailCell);
+                userListElement.appendChild(row);
+              });
+            }
+          } else {
+            console.log('Error:', xhr.status);
+          }
+        }
+      };
+      xhr.send();
+    });
+  </script>  
+</body>
+</html>
