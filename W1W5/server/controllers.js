@@ -9,6 +9,7 @@ export const savedata = async(req,res) => {
     console.log(error);
   }
 }
+
 export const getdata = async(req,res) => {
   try {
     const allPosts = await studentModel.find();
@@ -18,6 +19,7 @@ export const getdata = async(req,res) => {
     console.log(error);
   }
 }
+
 export const updatedata = async(req,res) => {
   const {roll_num,name} = req.body;
   try {
@@ -28,6 +30,7 @@ export const updatedata = async(req,res) => {
     console.log(error);
   }
 }
+
 export const deletedata = async(req,res) => {
   const {roll_num} = req.body;
   try {
@@ -37,6 +40,7 @@ export const deletedata = async(req,res) => {
     console.log(error);
   }
 }
+
 export const filterdata = async(req,res) => {
   const {name} = req.body;
   try {

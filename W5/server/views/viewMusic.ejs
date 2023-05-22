@@ -1,0 +1,31 @@
+<% if(count!=0) {%>
+  <h1>count of songs is : <%= count %> </h1>
+<% } %>
+
+
+<% if(music!=null) {%>
+  <table border="1px">
+    <thead>
+      <th>Songname</th>
+      <th>Film </th>
+      <th>Music_director </th>
+      <th>singer </th>
+      <th>Delete Song</th>
+  </thead>
+  <tbody>
+    <% music.forEach(item => { %>
+      <tr>
+        <td><%=item.songName%></td>
+        <td><%=item.filmName%></td>
+        <td><%=item.musicDirector%></td>
+        <td><%=item.singer%></td>
+        <td>
+          <form action="/deletesong/<%=item._id%>" method="post">
+          <button>Delete</button>
+        </form>
+        </td>
+      </tr>
+    <% }) %>
+  </tbody>
+  </table>
+<% } %>
